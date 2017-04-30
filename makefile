@@ -1,5 +1,5 @@
 CC = gcc
-NAME = odin
+NAME = loki
 CFLAGS =
 LDFLAGS =
 
