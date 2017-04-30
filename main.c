@@ -1,20 +1,37 @@
 #include <stdio.h>
+#include <string.h>
 #include "lib/bcrypt.h"
 #include "hashtypes/test_bcrypt.h"
 
+void brute_force();
+
 int main(int argc, char* argv[]) {
 
-	if (argc < 2) {
-		printf("usage:\n\t./odin <passwordhash> <[hashtype]>\n");
-		return 0;
-	}
+	brute_force();
 	
-	char* hash = argv[1];
-	char* test_password = "test";
-
-// $2a$12$uIaLVPwQKk7uTIGZ/CSIAuj.ySh6ripW2gX8Tbu.P7EOW4LI2s2li
-	printf("PW:%s\nHash:%s\n", test_password, hash);
-	printf("%d\n", test_bcrypt_password(test_password, hash));
 	return 1;
+}
+
+void brute_force() {
+	char str[128] = "aaa";
+	int index = 0;	
+	int len = strlen(str);
+
+	while (index < len) {
+		printf("%ld\n", strlen(str));
+		for (int i = 0; i < 95; i++) {
+			printf("%s\n", str);
+			str[0] = (str[0] + 1) % 128;
+			if ((int)str[0] == 127) {
+				str[0] = 32;
+			}
+		}
+		if ((int)str[index + 1] == 97) {
+			index++;
+		}
+	}	
+		
+	//str[strlen(str)] = 'a';
+	//printf("\n%s\n", str);
 }
 

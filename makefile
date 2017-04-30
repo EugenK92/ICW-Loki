@@ -3,7 +3,7 @@ NAME = loki
 CFLAGS =
 LDFLAGS =
 
-odin: lib/*.c lib/crypt_blowfish/*.c hashtypes/*.c main.c 
+loki: lib/*.c lib/crypt_blowfish/*.c hashtypes/*.c main.c 
 	$(CC) lib/*.c lib/crypt_blowfish/*.c hashtypes/*.c main.c -o $(NAME)
 
 clean:
