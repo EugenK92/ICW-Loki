@@ -10,21 +10,29 @@ void brute_force() {
 	int index = 0;
 	int len = strlen(str);
 
-	while (index < len) {
+	while (len < 3) {
+    len = strlen(str);
 		for (int i = 0; i < 95; i++) {
 			printf("%s\n", str);
-      inc_char(str);
+      inc_char(str, 0);
 		}
-		index++;
+    if ((int)str[index] == 97) {
+      str[strlen(str)] = 'a';
+    }
+    if ((int)str[0] == 97) {
+      inc_char(str, index);
+    }
+    index++;
 	}
+
 
 	//str[strlen(str)] = 'a';
 	//printf("\n%s\n", str);
 }
 
-void inc_char(char* str) {
-  str[0] = (str[0] + 1) % 128;
-  if ((int)str[0] == 127) {
-    str[0] = 32;
+void inc_char(char* str, int index) {
+  str[index] = (str[index] + 1) % 128;
+  if ((int)str[index] == 127) {
+    str[index] = 32;
   }
 }
