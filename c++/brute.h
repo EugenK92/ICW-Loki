@@ -14,7 +14,7 @@ public:
 
   Brute(std::string hash, std::string crypt_algorithm);
 	bool check_password(std::string word);
-	std::string shift_chars(std::string word, std::string first_char, std::string last_char);
+	std::string shift_chars(std::string word, char first_char, char last_char);
 	std::string brute_word();
 
 };
