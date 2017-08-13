@@ -10,14 +10,15 @@ private:
 	std::string hash;
 	std::string crypt_algorithm;
 
-public:
-
-  Brute(std::string hash, std::string crypt_algorithm);
 	int mapAlgorithmToNum();
 	bool check_password(std::string word);
 	std::string shift_chars(std::string word, char first_char, char last_char);
-	std::string brute_word();
 
+public:
+
+  Brute(std::string hash, std::string crypt_algorithm);
+	std::string brute_word();
+	
 };
 
 #endif /* BRUTE_H */
