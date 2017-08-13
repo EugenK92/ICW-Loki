@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "brute.h"
+#include "lib/bcrypt.h"
 
 Brute::Brute(std::string _hash, std::string _crypt_algorithm) {
 	hash = _hash;
@@ -8,13 +9,17 @@ Brute::Brute(std::string _hash, std::string _crypt_algorithm) {
 }
 
 bool Brute::check_password(std::string word) {
-	return false;
+	const char * w = word.c_str();
+	const char * h = hash.c_str();
+	// const char * h = "$2a$04$tov05GAdc4IKzLmOdz7l6O7rraKt8C5oIX.w6ofnGomsBsiKagAOC";
+	// std::cout << bcrypt_checkpw(w, h) << std::endl;
+	return bcrypt_checkpw(w, h) == 0;
 }
 
 std::string Brute::shift_chars(std::string word, char first_char, char last_char) {
 	int len = word.length();
 	if (word[len - 1] == last_char) {
-		word += first_char;
+		word += first_char - 1;
 	}
 	int i = 1;
 	bool done = false;
@@ -32,12 +37,13 @@ std::string Brute::shift_chars(std::string word, char first_char, char last_char
 }
 
 std::string Brute::brute_word() {
-	std::cout << "Let's Brute" << std::endl;
-	char first_char = '0';
-	char last_char = '~';
+	std::cout << "Let's Brute..." << std::endl;
+	char first_char = (char) 33;
+	char last_char = (char) 126;
 	bool isPw = false;
-	std::string password = "A";
-	while (!isPw && password != "Eugen") {
+	std::string password = "!";
+
+	while (!isPw) {
 		if (check_password(password)) {
 			isPw = true;
 		}
@@ -48,24 +54,12 @@ std::string Brute::brute_word() {
 				password[0] = first_char;
 			}
 			else {
-				password[0]++;
+				if ((int)password[0] < 33) {
+					password[0] = password[0] + 32;
+				}
+				password[0] = (password[0] + 1) % 127;
 			}
 		}
 	}
 	return password;
-
-
-	// std::string s = "A";
-	// for (int i = 0; i < 79; i++) {
-	// 	std::cout << i << ": " << s[0] <<  std::endl;
-	// 	if (s == "~") {
-	// 		s = "0";
-	// 	}
-	// 	else {
-	// 		s[0]++;
-	// 	}
-	// }
-	// s += "A";
-	// std::cout << s <<  std::endl;
-	// std::string last_char = "~";
 }
