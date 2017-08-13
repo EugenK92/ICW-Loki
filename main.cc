@@ -3,8 +3,13 @@
 #include "brute.h"
 
 int main (int argc, char* argv[]) {
-	// std::cout << argv[1] << std::endl;
-	Brute brute(argv[1], "2");
-	std::string password = brute.brute_word();
-	std::cout << "Password: " << password << std::endl;
+	if (argc < 3) {
+		std::cout << "usage:" << std::endl << "\t ./loki <hash> <crypt_algorithm>" << std::endl;
+	}
+	else {
+		Brute brute(argv[1], argv[2]);
+		std::string password = brute.brute_word();
+		std::cout << "Password: " << password << std::endl;
+	}
+	return 0;
 }

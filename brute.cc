@@ -8,12 +8,16 @@ Brute::Brute(std::string _hash, std::string _crypt_algorithm) {
 	crypt_algorithm = _crypt_algorithm;
 }
 
+int Brute::mapAlgorithmToNum() {
+	if (crypt_algorithm == "bcrypt") return 1;
+}
+
 bool Brute::check_password(std::string word) {
 	const char * w = word.c_str();
 	const char * h = hash.c_str();
-	// const char * h = "$2a$04$tov05GAdc4IKzLmOdz7l6O7rraKt8C5oIX.w6ofnGomsBsiKagAOC";
-	// std::cout << bcrypt_checkpw(w, h) << std::endl;
-	return bcrypt_checkpw(w, h) == 0;
+	switch (mapAlgorithmToNum()) {
+		case 1: return bcrypt_checkpw(w, h) == 0; break;
+	}
 }
 
 std::string Brute::shift_chars(std::string word, char first_char, char last_char) {
@@ -42,13 +46,15 @@ std::string Brute::brute_word() {
 	char last_char = (char) 126;
 	bool isPw = false;
 	std::string password = "!";
-
+	int counter = 0;
 	while (!isPw) {
+		if (counter % 1000 == 0) {
+			std::cout << "Working... current: " << password << std::endl;
+		}
 		if (check_password(password)) {
 			isPw = true;
 		}
 		else {
-			std::cout << password << std::endl;
 			if (password[0] == last_char) {
 				password = shift_chars(password, first_char, last_char);
 				password[0] = first_char;
@@ -60,6 +66,7 @@ std::string Brute::brute_word() {
 				password[0] = (password[0] + 1) % 127;
 			}
 		}
+		counter++;
 	}
 	return password;
 }
