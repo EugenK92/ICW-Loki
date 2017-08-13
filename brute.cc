@@ -49,7 +49,7 @@ std::string Brute::brute_word() {
 	int counter = 0;
 	while (!isPw) {
 		if (counter % 1000 == 0) {
-			std::cout << "Working... current: " << password << std::endl;
+			std::cout.width(6); std::cout << "[# " << counter << "]\tWorking... current: " << password << std::right << std::endl;
 		}
 		if (check_password(password)) {
 			isPw = true;

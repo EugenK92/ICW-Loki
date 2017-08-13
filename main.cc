@@ -20,10 +20,10 @@ int main (int argc, char* argv[]) {
 		else {
 			algo = find_algorithm(hashstring);
 		}
-		std::cout << "Used algorithm: " << algo << std::endl;
+		std::cout << std::endl << "Used algorithm: " << algo << std::endl;
 		Brute brute(hashstring, algo);
 		std::string password = brute.brute_word();
-		std::cout << "Password: " << password << std::endl;
+		std::cout << std::endl << "\033[1;32mPassword found: \033[1;31m" << password << "\033[0m" << std::endl << std::endl;
 	}
 	return 0;
 }
