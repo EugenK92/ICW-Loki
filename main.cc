@@ -32,6 +32,7 @@ int main (int argc, char* argv[]) {
 		std::cout << std::endl << "Used algorithm: " << algo << std::endl;
 		std::cout << "Start from: " << start_word << std::endl;
 		std::cout << "End at: " << end_word << std::endl << std::endl;
+
 		Brute brute(hashstring, algo);
 		std::string password = brute.brute_word(start_word, end_word);
 		std::cout << std::endl << "\033[1;32mPassword found: \033[1;31m" << password << "\033[0m" << std::endl << std::endl;
