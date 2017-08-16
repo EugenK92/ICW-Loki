@@ -17,8 +17,8 @@ private:
 public:
 
   Brute(std::string hash, std::string crypt_algorithm);
-	std::string brute_word();
-	
+	std::string brute_word(std::string start_word, std::string end_word);
+
 };
 
 #endif /* BRUTE_H */

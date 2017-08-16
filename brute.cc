@@ -40,19 +40,21 @@ std::string Brute::shift_chars(std::string word, char first_char, char last_char
 	return word;
 }
 
-std::string Brute::brute_word() {
+std::string Brute::brute_word(std::string start_word, std::string end_word) {
 	std::cout << "Let's Brute..." << std::endl;
 	char first_char = (char) 33;
 	char last_char = (char) 126;
 	bool isPw = false;
-	std::string password = "!";
+	std::string password = start_word;
 	int counter = 0;
-	while (!isPw) {
+
+	while (!isPw && password != end_word) {
 		if (counter % 1000 == 0) {
 			std::cout.width(6); std::cout << "[# " << counter << "]\tWorking... current: " << password << std::right << std::endl;
 		}
 		if (check_password(password)) {
 			isPw = true;
+			std::cout.width(6); std::cout << "[# " << counter << "]\tMatch! " << std::right << std::endl;
 		}
 		else {
 			if (password[0] == last_char) {
@@ -67,6 +69,9 @@ std::string Brute::brute_word() {
 			}
 		}
 		counter++;
+	}
+	if (!isPw) {
+		return " End reached without result!";
 	}
 	return password;
 }
