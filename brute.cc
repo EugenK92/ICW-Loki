@@ -31,7 +31,7 @@ std::string Brute::shift_chars(std::string word, char first_char, char last_char
 		}
 	}
 	if (full == word.length()) {
-		word += first_char;
+		word += first_char - 1;
 	}
 	while (!done) {
 		if (word[i] == last_char) {
@@ -55,7 +55,6 @@ std::string Brute::brute_word(std::string start_word, std::string end_word) {
 	int counter = 0;
 
 	while (!isPw && password != end_word) {
-		// std::cout << password << password.length() << std::endl;
 		if (counter % 1000 == 0) {
 			std::cout.width(6); std::cout << "[# " << counter << "]\tWorking... current: " << password << std::right << std::endl;
 		}

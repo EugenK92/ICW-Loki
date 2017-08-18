@@ -7,15 +7,14 @@ std::string find_algorithm(std::string hashstring) {
 	return "bcrypt";
 }
 
-int main (int argc, char* argv[]) {
+int main (int argc, char * argv[]) {
 	if (argc < 2) {
-		std::cout << "usage:" << std::endl << "\t ./loki <hash> [<crypt_algorithm>] [<start_word>] [<end_word>]" << std::endl;
+		std::cout << "usage:" << std::endl << "\t ./loki <hash> [<start_word>] [<end_word>] [<crypt_algorithm>]" << std::endl;
 	}
 	else {
 		std::string algo = "";
 		std::string start_word = "!";
-		// std::string end_word = "~~~~~~~~~~";
-		std::string end_word = "\"!!!";
+		std::string end_word = "~~~~~~~~~~";
 		std::string hashstring = argv[1];
 		if (argc > 2) {
 			start_word = argv[2];
@@ -31,6 +30,7 @@ int main (int argc, char* argv[]) {
 		}
 
 		std::cout << std::endl << "Used algorithm: " << algo << std::endl;
+		std::cout << "Hash: " << hashstring << std::endl;
 		std::cout << "Start from: " << start_word << std::endl;
 		std::cout << "End at: " << end_word << std::endl << std::endl;
 
