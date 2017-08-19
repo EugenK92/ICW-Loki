@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "brute.h"
+#include <crypt.h>
 
 std::string find_algorithm(std::string hashstring) {
 	//TODO Hier Algorithmus aus Hash herausfinden
@@ -8,6 +9,7 @@ std::string find_algorithm(std::string hashstring) {
 }
 
 int main (int argc, char * argv[]) {
+
 	if (argc < 2) {
 		std::cout << "usage:" << std::endl << "\t ./loki <hash> [<start_word>] [<end_word>] [<crypt_algorithm>]" << std::endl;
 	}

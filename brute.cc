@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
+#include <crypt.h>
 #include "brute.h"
+#include "hashtypes/md5.h"
 #include "lib/bcrypt.h"
 
 Brute::Brute(std::string _hash, std::string _crypt_algorithm) {
@@ -10,6 +12,8 @@ Brute::Brute(std::string _hash, std::string _crypt_algorithm) {
 
 int Brute::mapAlgorithmToNum() {
 	if (crypt_algorithm == "bcrypt") return 1;
+	if (crypt_algorithm == "md5") return 2;
+	if (crypt_algorithm == "crypt") return 3;
 }
 
 bool Brute::check_password(std::string word) {
@@ -17,6 +21,8 @@ bool Brute::check_password(std::string word) {
 	const char * h = hash.c_str();
 	switch (mapAlgorithmToNum()) {
 		case 1: return bcrypt_checkpw(w, h) == 0; break;
+		case 2: return md5(w) == h; break;
+		case 3: return crypt(w, h) == hash; break;
 	}
 }
 
