@@ -11,24 +11,28 @@ std::string find_algorithm(std::string hashstring) {
 int main (int argc, char * argv[]) {
 
 	if (argc < 2) {
-		std::cout << "usage:" << std::endl << "\t ./loki <hash> [<start_word>] [<end_word>] [<crypt_algorithm>]" << std::endl;
+		std::cout << "usage:" << std::endl << "\t ./loki <hash> [<crypt_algorithm>] [<start_word>] [<end_word>]" << std::endl;
 	}
 	else {
 		std::string algo = "";
 		std::string start_word = "!";
 		std::string end_word = "~~~~~~~~~~";
-		std::string hashstring = argv[1];
-		if (argc > 2) {
-			start_word = argv[2];
-		}
-		if (argc > 3) {
-			end_word = argv[3];
-		}
-		if (argc > 4) {
-			algo = argv[4];
-		}
-		else {
-			algo = find_algorithm(hashstring);
+		std::string hashstring = "";
+
+		for (int i = 0; i < argc; i++) {
+			std::string value = argv[i];
+			if (value == "-h" || value == "--hash") {
+				hashstring = argv[i + 1];
+			}
+			else if (value == "-a" || value == "--algo") {
+				algo = argv[i + 1];
+			}
+			else if (value == "-s" || value == "--start") {
+				start_word = argv[i + 1];
+			}
+			else if (value == "-e" || value == "--end") {
+				end_word = argv[i + 1];
+			}
 		}
 
 		std::cout << std::endl << "Used algorithm: " << algo << std::endl;
