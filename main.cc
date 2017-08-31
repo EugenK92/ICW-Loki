@@ -3,11 +3,6 @@
 #include "brute.h"
 #include <crypt.h>
 
-std::string find_algorithm(std::string hashstring) {
-	//TODO Hier Algorithmus aus Hash herausfinden
-	return "bcrypt";
-}
-
 int main (int argc, char * argv[]) {
 
 	if (argc < 2) {
