@@ -61,8 +61,9 @@ std::string Brute::brute_word(std::string start_word, std::string end_word) {
 	unsigned int counter = 0;
 
 	while (!isPw && password != end_word) {
+		// std::cout << password << "  [ " << counter << " ] " <<  (int)password[0] << std::endl;
 		if (counter % 10000 == 0) {
-			std::cout.width(6); std::cout << "[# " << counter << "]\tWorking... current: " << password << std::right << std::endl;
+			// std::cout.width(6); std::cout << "[# " << counter << "]\tWorking... current: " << password << std::right << std::endl;
 		}
 		if (check_password(password)) {
 			isPw = true;
